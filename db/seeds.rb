@@ -13,5 +13,5 @@ Edible.create(name: 'coke')
 Edible.create(name: 'chips')
 
 Game.create(name: 'single')
-Game.create(nameL 'double')
-Game.create(nameL 'century')
+Game.create(name: 'double')
+Game.create(name: 'century')

@@ -18,6 +18,10 @@
  # LESS
  *= require devise_bootstrap_views_less
  */
+
+.ui-helper-hidden-accessible{
+    display: none;
+ }
 @media all and (max-width: 1200px) { /* screen size until 1200px */
     body {
         font-size: 1.5em; /* 1.5x default size */

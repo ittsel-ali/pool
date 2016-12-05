@@ -1,6 +1,49 @@
-<div class="col-xs-6">	</div>
+<div class="col-xs-8">
+  <div class="table-responsive">          
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Game</th>
+          <th>Edibles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transactions.each do |transaction| %>
+          <tr>
+            <td><%=transaction.id%></td>
+            <td><%=transaction.customer.full_name%></td>
+            <td>
+              <ul>
+                <% games = get_games(transaction) %>
+                <li><%= "Single(#{games[0]['count']})"%></li><br>
+                <li><%= "Double(#{games[1]['count']})"%></li><br> 
+                <li><%= "Century(#{games[2]['count']})(#{games[2]['time']}min)"%></li> 
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <% if transaction.consumes.any? %>
+                  <% transaction.consumes.each do |consume| %>
+                    <%= consume.edible.name %>
+                    <br>
+                  <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </td>
+            <td>New York</td>
+            <td>USA</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 	
-<div class="col-xs-6">
+<div class="col-xs-4">
 	<div class="col-xs-12 pull-right">
 		<div class="panel panel-default">
 			<div class="panel-heading mx-auto text-muted">
