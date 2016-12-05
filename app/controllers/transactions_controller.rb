@@ -30,6 +30,6 @@ class TransactionsController < ApplicationController
 
 	protected
 	def permit_params
-		params.require(:transaction).permit(:plays_attributes => [:game_id])
+		params.require(:transaction).permit(:customer_id, :plays_attributes => [:game_id], :consumes_attributes => [:edible_id])
 	end
 end

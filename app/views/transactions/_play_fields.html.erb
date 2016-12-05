@@ -1,13 +1,12 @@
-<div class="row col-xs-12">
-	<%= content_tag :li, class: "list-group-item #{assoc.to_s.singularize}-list" do %>
+	<%= content_tag :li, class: "list-group-item #{assoc.to_s.singularize}-list btn-block" do %>
 		<%= label_tag name %>
-		<%= f.hidden_field :game_id, value: id %>
+		<%= f.hidden_field :game_id, value: id, for: name %>
+		
 		<% if name == 'Century'%>
-			<%= f.text_field :quantity_or_duration, placeholder: 'time' %>
+			<%= f.text_field :quantity_or_duration, placeholder: 'time', size: 3 %>
 		<% else %>
 			<%= f.hidden_field :quantity_or_duration, value: 1 %>
 		<% end %>
 
 		<%= link_to_remove_field name, "#{assoc.to_s.singularize}-list" %>
 	<% end %>
-</div>

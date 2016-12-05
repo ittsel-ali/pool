@@ -1,6 +1,6 @@
-<%= content_tag :li, class: "list-group-item #{assoc.to_s.singularize}-list" do %>
+<%= content_tag :li, class: "list-group-item #{assoc.to_s.singularize}-list btn-block" do %>
 	<%= label_tag name %>
-	<%= f.hidden_field :consume_id, value: id %>
+	<%= f.hidden_field :edible_id, value: id, for: name %>
 
 	<%= link_to_remove_field name, "#{assoc.to_s.singularize}-list" %>
 <% end %>
