@@ -11,13 +11,12 @@ function add_fields(name, association, content) {
 }
 
 $(document).ready(function(){
-	$('#new_customer').on('submit', function(event){
+	$('#new_customer').bind('ajax:beforeSend', function(event, id){
 		event.preventDefault()
+		
 		if ($('#transaction_customer_id').val()){
-			alert('no need');
-		}else{
-			event.submit(); 
-		} 
+			return false
+		}
 	})
 
 	$('#new_customer').bind('ajax:success', function(event, id){
