@@ -1,0 +1,13 @@
+<div class="row col-xs-12">
+	<%= content_tag :li, class: "list-group-item #{assoc.to_s.singularize}-list" do %>
+		<%= label_tag name %>
+		<%= f.hidden_field :game_id, value: id %>
+		<% if name == 'Century'%>
+			<%= f.text_field :quantity_or_duration, placeholder: 'time' %>
+		<% else %>
+			<%= f.hidden_field :quantity_or_duration, value: 1 %>
+		<% end %>
+
+		<%= link_to_remove_field name, "#{assoc.to_s.singularize}-list" %>
+	<% end %>
+</div>

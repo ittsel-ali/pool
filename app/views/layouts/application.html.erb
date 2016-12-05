@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <%= csrf_meta_tag %>
+    <title>Pool</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag 'application', media: 'all'%>
+
+  </head>
+
+  <body>
+    <%= render "layouts/nav" %>
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <div class="alert alert-info">
+          <a class="close pull-right" data-dismiss="alert">&#215;</a>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        </div>
+      <% end %>
+    <% end %>
+    <br /><br />
+    <div class="container"> 
+    	<%= yield %> 
+    </div>
+  </body>
+</html>

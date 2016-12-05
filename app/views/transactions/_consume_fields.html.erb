@@ -1,0 +1,6 @@
+<%= content_tag :li, class: "list-group-item #{assoc.to_s.singularize}-list" do %>
+	<%= label_tag name %>
+	<%= f.hidden_field :consume_id, value: id %>
+
+	<%= link_to_remove_field name, "#{assoc.to_s.singularize}-list" %>
+<% end %>

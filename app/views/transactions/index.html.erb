@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-xs-4">
+		<%= form_for @customer, remote: true, format: :json do |f| %>
+			<%= f.autocomplete_field :full_name, autocomplete_customer_full_name_transactions_path, :id_element => '#transaction_customer_id' %>
+			<%= f.submit 'GO', class: 'btn btn-success', data: {toggle: "collapse", target: "#transaction"} %>
+		<% end %>
+	</div>
+		
+	<div class="row col-xs-8 collapse" id="transaction">
+		<%= form_for @transaction do |f| %>
+		<%= f.text_field :customer_id %>
+		<div class="col-xs-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<% @games.each do |game| %>
+						<%= link_to_add_fields game.name.capitalize, f, :plays, game.id %>
+					<% end %>	
+				</div>
+			</div>
+		</div>	
+
+		<div class="col-xs-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<% @edibles.each do |edible| %>
+						<%= link_to_add_fields edible.name.capitalize, f, :consumes, edible.id %>
+					<% end %>
+				</div>
+
+			</div>
+		</div>	
+		
+		<div class="row col-xs-8">
+			<%= f.submit 'submit', class: "btn btn-success" %>
+		</div>
+		<% end %>
+	</div>	
+</div>
