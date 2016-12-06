@@ -24,8 +24,16 @@ class TransactionsController < ApplicationController
 		end 
 	end
 
+	def edit
+		@transaction = Transaction.find(params[:id])
+		@games = Game.all
+		@edibles = Edible.all
+		@transaction.plays.build
+	end
+
 	def update
 		@transaction = Transaction.find(params[:id]).update(permit_params)
+		redirect_to root_url, notice: 'Transaction updated successfully.'
 	end
 
 	protected

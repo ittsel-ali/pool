@@ -21,7 +21,10 @@
 
 .ui-helper-hidden-accessible{
     display: none;
- }
+}
+.no-decoration{
+    list-style: none;
+}
 @media all and (max-width: 1200px) { /* screen size until 1200px */
     body {
         font-size: 1.5em; /* 1.5x default size */

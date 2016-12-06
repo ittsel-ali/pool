@@ -24,10 +24,27 @@ module TransactionsHelper
 			elsif play.game.game_type == 1
 				games[1]["count"] += 1
 			elsif play.game.game_type == 2
-				games[2]["count"] += 1
 				games[2]["time"] += play.quantity_or_duration.to_i
 			end
 		end
 		games
+	end
+	def get_bill(transaction)
+		bill = 0
+		if transaction.plays.any?
+			transaction.plays.each do |play|
+				if play.game.game_type == 0 || play.game.game_type == 1
+					bill = bill + (play.game.price.to_i)
+				elsif play.game.game_type == 2
+					bill = bill + (play.quantity_or_duration.to_i * play.game.price.to_i)
+				end
+			end
+		end
+		if transaction.edibles.any?
+			transaction.edibles.each do |edible|
+				bill = bill + (edible.price.to_i)
+			end
+		end
+		bill
 	end
 end

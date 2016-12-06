@@ -7,6 +7,9 @@
           <th>Name</th>
           <th>Game</th>
           <th>Edibles</th>
+          <th>Bill</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -17,25 +20,29 @@
             <td>
               <ul>
                 <% games = get_games(transaction) %>
-                <li><%= "Single(#{games[0]['count']})"%></li><br>
-                <li><%= "Double(#{games[1]['count']})"%></li><br> 
-                <li><%= "Century(#{games[2]['count']})(#{games[2]['time']}min)"%></li> 
+                <li class= "no-decoration">
+                	<%= "Single(#{games[0]['count']})"%><br>
+                	<%= "Double(#{games[1]['count']})"%><br>
+                	<%= "Century(#{games[2]['time']}min)"%>	
+                </li>
               </ul>
             </td>
             <td>
               <ul>
-                <li>
+                <li class= "no-decoration">
                   <% if transaction.consumes.any? %>
-                  <% transaction.consumes.each do |consume| %>
-                    <%= consume.edible.name %>
-                    <br>
-                  <% end %>
+	                  <% transaction.consumes.each do |consume| %>
+	                    <%= consume.edible.name %>
+	                    <br>
+	                  <% end %>
                   <% end %>
                 </li>
               </ul>
             </td>
-            <td>New York</td>
-            <td>USA</td>
+            <td>
+            	<%= get_bill(transaction) %>
+            </td>
+            <td><%= link_to "Edit", edit_transaction_path(transaction.id) %></td>
           </tr>
         <% end %>
       </tbody>
