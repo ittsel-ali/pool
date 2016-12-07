@@ -29,6 +29,7 @@ class TransactionsController < ApplicationController
 		@games = Game.all
 		@edibles = Edible.all
 		@transaction.plays.build
+		@customer = @transaction.customer
 	end
 
 	def update
@@ -36,8 +37,18 @@ class TransactionsController < ApplicationController
 		redirect_to root_url, notice: 'Transaction updated successfully.'
 	end
 
+	def delete
+		@transaction = Transaction.find(params[:id])
+	end
+
+	def destroy
+		@transaction = Transaction.find(params[:id])
+		@transaction.destroy
+		redirect_to root_url, notice: 'Transaction Deleted successfully.'
+	end
+
 	protected
 	def permit_params
-		params.require(:transaction).permit(:customer_id, :plays_attributes => [:game_id,:quantity_or_duration], :consumes_attributes => [:edible_id])
+		params.require(:transaction).permit(:customer_id, :plays_attributes => [:id,:game_id,:quantity_or_duration, :_destroy], :consumes_attributes => [:id,:edible_id,:_destroy])
 	end
 end

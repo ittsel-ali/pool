@@ -7,6 +7,6 @@ class Transaction < ActiveRecord::Base
 	has_many :plays, dependent: :destroy
 	has_many :games, :through => :plays
 
-	accepts_nested_attributes_for :consumes
-	accepts_nested_attributes_for :plays
+	accepts_nested_attributes_for :consumes, :allow_destroy => true, update_only: true
+	accepts_nested_attributes_for :plays, :allow_destroy => true, update_only: true
 end

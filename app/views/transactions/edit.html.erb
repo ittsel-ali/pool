@@ -4,11 +4,21 @@
 			<div class="panel-heading mx-auto">
 				<h3 class="panel-title text-muted"><%= Game.to_s.pluralize.capitalize %></h3>
 			</div>
-
+			<%= f.hidden_field_tag :name,@customer.id %>
 			<div class="panel-body">
 				<% @games.each do |game| %>
 					<%= link_to_add_fields game.name.capitalize, f, :plays, game.id %>
 				<% end %>	
+				<%= f.fields_for :plays do |p| %>
+
+					<%= p.fields_for :game do |g| %>
+						<%= g.label :name %>
+					<% end %>
+					
+					<%= p.check_box :_destroy, class: 'override' %>
+                    <%= "remove?" %>
+                    <br>
+				<% end %>
 			</div>
 		</div>
 	</div>	
@@ -24,6 +34,12 @@
 					<%= link_to_add_fields edible.name.capitalize, f, :consumes, edible.id %>
 				<% end %>
 			</div>
+			<%= f.fields_for :consumes do |a| %>
+				<%= a.object.edible.name.capitalize %>
+				<%= a.check_box :_destroy, class: 'override' %>
+                <%= "remove?" %>
+                <br>
+			<% end %>
 
 		</div>
 	</div>	
